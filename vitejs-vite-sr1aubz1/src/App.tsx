@@ -100,16 +100,18 @@ const RESULTS: Record<ResultKey, Result> = {
 };
 
 // ── LOGIC ────────────────────────────────────────────────────────────────
-function getResult(answers: (OptionValue | null)[]): ResultKey {
-  const counts: Record<OptionValue, number> = { A: 0, B: 0, C: 0, D: 0 };
+type ResultKey = 'A' | 'B' | 'C' | 'D';
+
+function getResult(answers: (ResultKey | null)[]): ResultKey {
+  const counts: Record<ResultKey, number> = { A: 0, B: 0, C: 0, D: 0 };
 
   answers.forEach((a) => {
     if (a) counts[a]++;
   });
 
-  return Object.entries(counts).sort((a, b) => b[1] - a[1])[0][0] as ResultKey;
+  return Object.entries(counts)
+    .sort((a, b) => b[1] - a[1])[0][0] as ResultKey;
 }
-
 // ── COMPONENT ─────────────────────────────────────────────────────────────
 export default function Quiz() {
   const [current, setCurrent] = useState<number>(0);
