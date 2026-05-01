@@ -117,7 +117,7 @@ export default function Quiz() {
     Array(QUESTIONS.length).fill(null)
   );
   const [selected, setSelected] = useState<OptionValue | null>(null);
-  const [resultKey, setResultKey] = useState<ResultKey | null>(null);
+  const [resultKey, setResultKey] = useState<'A' | 'B' | 'C' | 'D' | null>(null);
 
   useEffect(() => {
     setSelected(answers[current]);
