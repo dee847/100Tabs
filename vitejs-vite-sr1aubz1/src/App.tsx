@@ -295,7 +295,7 @@ export default function Quiz() {
         setCurrent(current + 1);
         setAnimating(false);
       } else {
-   function getResult(answers: (string | null)[]): ResultKey {;
+   function getResult(answers: (string | null)[]): ResultKey {
         setResultKey(key);
         setScreen('result');
         setAnimating(false);
