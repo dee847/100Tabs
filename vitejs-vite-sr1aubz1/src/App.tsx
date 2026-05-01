@@ -128,8 +128,21 @@ const QUESTIONS = [
     ],
   },
 ];
+type ResultKey = 'A' | 'B' | 'C' | 'D';
 
-const RESULTS = {
+type Result = {
+  stage: string;
+  icon: string;
+  tagline: string;
+  color: string;
+  bgGradient: string;
+  accentLight: string;
+  description: string;
+  truth: string;
+  nextMove: string;
+  cta: string;
+};
+const RESULTS: Record<ResultKey, Result> = {
   A: {
     stage: 'The Foundations Stage',
     icon: '◻',
@@ -260,7 +273,7 @@ export default function Quiz() {
   const [current, setCurrent] = useState(0);
   const [answers, setAnswers] = useState(Array(QUESTIONS.length).fill(null));
   const [selected, setSelected] = useState(null);
-  const [resultKey, setResultKey] = useState(null);
+  const [resultKey, setResultKey] = useState<ResultKey | null>(null);
   const [animating, setAnimating] = useState(false);
 
   useEffect(() => {
@@ -282,7 +295,7 @@ export default function Quiz() {
         setCurrent(current + 1);
         setAnimating(false);
       } else {
-        const key = getResult(answers);
+   function getResult(answers: (string | null)[]): ResultKey {;
         setResultKey(key);
         setScreen('result');
         setAnimating(false);
@@ -301,7 +314,7 @@ export default function Quiz() {
   }
 
   const q = QUESTIONS[current];
- const result = resultKey ? RESULTS[resultKey as keyof typeof RESULTS] : null;
+ const result = resultKey ? RESULTS[resultKey] : null;
 
   // ── INTRO ──────────────────────────────────────────────────────────────────
   if (screen === 'intro') {
