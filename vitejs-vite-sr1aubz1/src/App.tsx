@@ -301,7 +301,7 @@ export default function Quiz() {
   }
 
   const q = QUESTIONS[current];
-  const result = resultKey ? RESULTS[resultKey] : null;
+ const result = resultKey ? RESULTS[resultKey as keyof typeof RESULTS] : null;
 
   // ── INTRO ──────────────────────────────────────────────────────────────────
   if (screen === 'intro') {
